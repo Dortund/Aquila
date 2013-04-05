@@ -8,13 +8,15 @@ namespace Aquila.Data
 {
     class Planet
     {
-        protected Dictionary<Player, int> players = new Dictionary<Player, int>();
-        protected int[] satelitePoints;
-        protected Player[] sateliteOwner;
-        protected int satelitesClaimed = 0;
+        public Dictionary<Player, int> Players { get; protected set; }
+        public int[] satelitePoints { get; protected set; }
+        public Player[] sateliteOwner { get; protected set; }
+        public int satelitesClaimed { get; protected set; }
 
         public Planet(int[] satelitePoints)
         {
+            Players = new Dictionary<Player, int>();
+            satelitesClaimed = 0;
             this.satelitePoints = satelitePoints;
             this.sateliteOwner = new Player[this.satelitePoints.Length];
         }
@@ -24,19 +26,19 @@ namespace Aquila.Data
             if ((player.roundDown && stations > cards / 2) || (!player.roundDown && stations > cards + 1 / 2))
                 throw new InvalidOperationException();
 
-            if (!players.ContainsKey(player))
-                players.Add(player, 0);
+            if (!Players.ContainsKey(player))
+                Players.Add(player, 0);
 
-            players[player] += stations;
+            Players[player] += stations;
         }
 
         public void Clear(Player player)
         {
-            if (!players.ContainsKey(player))
-                players.Add(player, 0);
+            if (!Players.ContainsKey(player))
+                Players.Add(player, 0);
 
-            var res = players[player];
-            players[player] = 0;
+            var res = Players[player];
+            Players[player] = 0;
             player.Stations += res;
         }
 
@@ -48,8 +50,8 @@ namespace Aquila.Data
             var tries = (player.roundDown ? cards : cards + 1) / 2;
 
             var stations = new List<Player>();
-            foreach (var p in players.Keys)
-                for (int i = 0; i < players[p]; i++ )
+            foreach (var p in Players.Keys)
+                for (int i = 0; i < Players[p]; i++ )
                     stations.Add(p);
 
             var r = new Random();
@@ -59,7 +61,7 @@ namespace Aquila.Data
             {
                 if (p != player)
                 {
-                    players[p]--;
+                    Players[p]--;
                     player.Stations++;
                 }
                 else
@@ -79,5 +81,6 @@ namespace Aquila.Data
                     res += satelitePoints[i];
             return res;
         }
+
     }
 }
