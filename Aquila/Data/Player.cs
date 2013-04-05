@@ -16,6 +16,8 @@ namespace Aquila.Data
         public int TransportCards { get; set; }
         public List<PlanetCard> Hand { get; set; }
 
+        public Universe Universe { get; set; }
+
         public int PlayerTradeableCards
         {
             get
@@ -55,6 +57,18 @@ namespace Aquila.Data
                     default:
                         return 9;
                 }
+            }
+        }
+
+        public int PointsInHand
+        {
+            get
+            {
+                int res = 0;
+                foreach (var card in Hand)
+                    if (card is BonusCard)
+                        res += (card as BonusCard).Points;
+                return res;
             }
         }
     }
