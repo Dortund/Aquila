@@ -47,6 +47,7 @@
     <Compile Include="Data\Game.cs" />
     <Compile Include="Data\PlanetCard.cs" />
     <Compile Include="Data\Player.cs" />
+    <Compile Include="Net\Server.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
