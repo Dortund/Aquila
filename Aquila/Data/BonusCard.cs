@@ -8,5 +8,16 @@ namespace Aquila.Data
 {
     class BonusCard : PlanetCard
     {
+        public int Points { get; set; }
+
+        public new bool Equals(BonusCard obj)
+        {
+            return obj.Points == Points;
+        }
+
+        public new bool Equals(PlanetCard obj)
+        {
+            return true;
+        }
     }
 }
