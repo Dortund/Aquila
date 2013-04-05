@@ -10,11 +10,17 @@ namespace Aquila.Net
     class Client
     {
         public Data.Player Player { get; set; }
-        public TcpClient Client { get; set; }
+        public TcpClient Socket { get; set; }
+        public Data.Game Game { get; set; }
 
         public Client(TcpClient client)
         {
-            Client = client;
+            Socket = client;
+        }
+
+        public void Process()
+        {
+
         }
     }
 }

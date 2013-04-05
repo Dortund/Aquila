@@ -48,6 +48,7 @@
     <Compile Include="Data\Planet.cs" />
     <Compile Include="Data\PlanetCard.cs" />
     <Compile Include="Data\Player.cs" />
+    <Compile Include="Net\Client.cs" />
     <Compile Include="Net\Server.cs" />
     <Compile Include="Data\Universe.cs" />
     <Compile Include="Program.cs" />

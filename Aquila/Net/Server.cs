@@ -10,7 +10,7 @@ namespace Aquila.Net
 {
     class Server
     {
-        public TcpListener Server { get; protected set; }
+        public TcpListener Socket { get; protected set; }
         public bool IsRunning { get; set; }
 
         public Server()
@@ -21,15 +21,15 @@ namespace Aquila.Net
                     return;
                 IsRunning = true;
 
-                Server = new TcpListener(IPAddress.Any, 35353);
-                Server.Start();
+                Socket = new TcpListener(IPAddress.Any, 35353);
+                Socket.Start();
 
                 while (IsRunning)
                 {
-                    var client = Server.AcceptTcpClient();
+                    var client = new Client(Socket.AcceptTcpClient());
 
                 }
-                Server.Stop();
+                Socket.Stop();
             }, TaskCreationOptions.LongRunning);
         }
     }
