@@ -26,7 +26,8 @@ namespace Aquila.Net
 
                 while (IsRunning)
                 {
-                    
+                    var client = Server.AcceptTcpClient();
+
                 }
                 Server.Stop();
             }, TaskCreationOptions.LongRunning);
