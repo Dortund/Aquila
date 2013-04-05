@@ -14,6 +14,7 @@ namespace Aquila.Data
         public int TechnologyDevelopment { get; set; }
 
         public int TransportCards { get; set; }
+        public int Stations { get; set; }
         public List<PlanetCard> Hand { get; set; }
 
         public Universe Universe { get; set; }
