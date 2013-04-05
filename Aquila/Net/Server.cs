@@ -27,7 +27,10 @@ namespace Aquila.Net
                 while (IsRunning)
                 {
                     var client = new Client(Socket.AcceptTcpClient());
-
+                    Task.Factory.StartNew(() =>
+                        {
+                            client.Process();
+                        }, TaskCreationOptions.LongRunning);
                 }
                 Socket.Stop();
             }, TaskCreationOptions.LongRunning);
