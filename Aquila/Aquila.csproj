@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BonusCard.cs" />
     <Compile Include="Data\Deck.cs" />
     <Compile Include="Data\Game.cs" />
+    <Compile Include="Data\PlanetCard.cs" />
     <Compile Include="Data\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,7 +9,12 @@ namespace Aquila.Data
 {
     class Player
     {
-        Color color;
+        public Color color { get; set; }
+        public int spaceShipDevelopment { get; set; }
+        public int technologyDevelopment { get; set; }
+
+        public int transportCards { get; set; }
+        public List<T> 
 
     }
 }
