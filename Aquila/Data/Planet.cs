@@ -9,9 +9,17 @@ namespace Aquila.Data
     class Planet
     {
         protected Dictionary<Player, int> players = new Dictionary<Player, int>();
+        protected int[] satelitePoints;
+        protected Player[] sateliteOwner;
+        protected int satelitesClaimed = 0;
 
+        public Planet(int[] satelitePoints)
+        {
+            this.satelitePoints = satelitePoints;
+            this.sateliteOwner = new Player[this.satelitePoints.Length];
+        }
 
-        public void add(int stations, int cards, Player player)
+        public void Add(int stations, int cards, Player player)
         {
             if ((player.roundDown && stations > cards / 2) || (!player.roundDown && stations > cards + 1 / 2))
                 throw new InvalidOperationException();
@@ -22,7 +30,7 @@ namespace Aquila.Data
             players[player] += stations;
         }
 
-        public void clear(Player player)
+        public void Clear(Player player)
         {
             if (!players.ContainsKey(player))
                 players.Add(player, 0);
@@ -32,8 +40,11 @@ namespace Aquila.Data
             player.Stations += res;
         }
 
-        public void establish(Player player, int cards)
+        public void Establish(Player player, int cards)
         {
+            if (satelitesClaimed == satelitePoints.Length)
+                throw new InvalidOperationException();
+
             var tries = (player.roundDown ? cards : cards + 1) / 2;
 
             var stations = new List<Player>();
@@ -53,10 +64,20 @@ namespace Aquila.Data
                 }
                 else
                 {
-
+                    sateliteOwner[satelitesClaimed] = p;
+                    satelitesClaimed++;
                     break;
                 }
             }
+        }
+
+        public int GetPoints(Player player)
+        {
+            var res = 0;
+            for (int i = 0; i < sateliteOwner.Length; i++)
+                if (sateliteOwner[i] == player)
+                    res += satelitePoints[i];
+            return res;
         }
     }
 }
