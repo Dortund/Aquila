@@ -10,12 +10,12 @@ namespace Aquila.Data
     {
         public int Points { get; set; }
 
-        public new bool Equals(BonusCard obj)
+        public override bool Equals(BonusCard obj)
         {
             return obj.Points == Points;
         }
 
-        public new bool Equals(PlanetCard obj)
+        public override bool Equals(PlanetCard obj)
         {
             return true;
         }

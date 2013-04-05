@@ -10,12 +10,12 @@ namespace Aquila.Data
     {
         public string PlanetName { get; set; }
 
-        public bool Equals(PlanetCard obj)
+        public virtual bool Equals(PlanetCard obj)
         {
             return obj.PlanetName == PlanetName;
         }
 
-        public bool Equals(BonusCard obj)
+        public virtual bool Equals(BonusCard obj)
         {
             return true;
         }
